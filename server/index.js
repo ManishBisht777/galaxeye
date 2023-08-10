@@ -19,7 +19,7 @@ app.put("/intersect", async (req, res) => {
     geoJson.features.forEach(function (feature) {
       var intersection = turf.intersect(feature, AOIObject);
       if (intersection) {
-        intersections.features.push(intersection);
+        intersections.features.push(feature);
       }
     });
 

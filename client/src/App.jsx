@@ -18,7 +18,7 @@ function App() {
 
     try {
       const AOIgeometry = { AOIGeoJSONObject };
-      response = await fetch("http://localhost:3000/intersect", {
+      response = await fetch("http://localhost:5000/intersect", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(AOIgeometry),
@@ -49,8 +49,6 @@ function App() {
     }
   }, [intersectingTiles]);
 
-  console.log(intersectingTiles);
-
   return (
     <main className="w-screen h-screen flex justify-center items-center">
       <MapContainer
@@ -68,7 +66,6 @@ function App() {
               rectangle: false,
               circle: false,
               circlemarker: false,
-              polyline: false,
               marker: false,
               polygon: {
                 shapeOptions: {

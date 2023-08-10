@@ -1,30 +1,15 @@
-version : "3.8"
+version: "3.8"
 services:
-  ngnix:
-    restart : always
-    image: nginx:latest
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
-    depends_on:
-      - client
-      - api
-  api:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./server
-    volumes:
-      - "./server:/app"
-      - "/app/node_modules"
-  
   client:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./client
+    build: ./client
+    ports:
+      - 5713:5713
     volumes:
-      - "./client:/app"
-      - "/app/node_modules"
-    command: npm run start
-    tty: true
+      - ./client:/app
 
-
+  server:
+    build: ./server
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server:/app
